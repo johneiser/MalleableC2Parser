@@ -8,7 +8,7 @@ A [**Malleable Command and Control Profile**](https://www.cobaltstrike.com/help-
 import malleable
 try:
   p = malleable.Profile()
-  p.ingest("sample.profile")
+  p.ingest("amazon.profile")
   if p.validate():
     request = p.get.construct_client("mydomain.sample", "mydata")
     print request.url, request.headers, request.body
