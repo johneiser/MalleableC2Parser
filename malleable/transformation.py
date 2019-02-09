@@ -179,7 +179,7 @@ class Transform(MalleableObject):
         self.transform_r = lambda data: data[:-len(string)]
         self.generate_python = lambda var: "%(var)s+=b'%(string)s'\n" % {"var":var, "string":string}
         self.generate_python_r = lambda var: "%(var)s=%(var)s[:-%(len)i]\n" % {"var":var, "len":len(string)}
-        self.generate_powershell = lambda var: "%(var)s+=b'%(string)s';" % {"var":var, "string":string}
+        self.generate_powershell = lambda var: "%(var)s+='%(string)s';" % {"var":var, "string":string}
         self.generate_powershell_r = lambda var: "%(var)s=%(var)s.Substring(0,%(var)s.Length-%(len)i);" % {"var":var, "len":len(string)}
 
     def _base64(self):
@@ -254,7 +254,7 @@ class Transform(MalleableObject):
         self.transform_r = lambda data: data[len(string):]
         self.generate_python = lambda var: "%(var)s=b'%(string)s'+%(var)s\n" % {"var":var, "string":string}
         self.generate_python_r = lambda var: "%(var)s=%(var)s[%(len)i:]\n" % {"var":var, "len":len(string)}
-        self.generate_powershell = lambda var: "%(var)s=b'%(string)s'+%(var)s;" % {"var":var, "string":string}
+        self.generate_powershell = lambda var: "%(var)s='%(string)s'+%(var)s;" % {"var":var, "string":string}
         self.generate_powershell_r = lambda var: "%(var)s=%(var)s.substring(%(len)i,%(var)s.Length-%(len)i);" % {"var":var, "len":len(string)}
 
 class Terminator(MalleableObject):
